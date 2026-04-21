@@ -1,0 +1,135 @@
+.stats {
+  position: relative;
+  background: var(--color-dark);
+  overflow: hidden;
+}
+
+.stats__inner {
+  position: relative;
+}
+
+.stats__top-line,
+.stats__bottom-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245,197,24,0.4), transparent);
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  padding: 0 24px;
+}
+
+.stat-card {
+  position: relative;
+  padding: 52px 32px;
+  text-align: center;
+  transition: background var(--transition-normal);
+  border-right: 1px solid var(--color-border-subtle);
+}
+
+.stat-card:last-child {
+  border-right: none;
+}
+
+.stat-card:hover {
+  background: rgba(245, 197, 24, 0.04);
+}
+
+.stat-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: var(--gradient-gold);
+  border-radius: 2px 2px 0 0;
+  transition: width var(--transition-normal);
+}
+
+.stat-card:hover::after {
+  width: 60%;
+}
+
+.stat-card__icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  display: block;
+  filter: grayscale(0.3);
+  transition: filter var(--transition-fast);
+}
+
+.stat-card:hover .stat-card__icon {
+  filter: none;
+}
+
+.stat-card__value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.stat-card__number {
+  font-family: var(--font-primary);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.stat-card__suffix {
+  font-family: var(--font-primary);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.stat-card__label {
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.stat-card__desc {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stat-card {
+    border-right: 1px solid var(--color-border-subtle);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+  .stat-card:nth-child(2n) {
+    border-right: none;
+  }
+  .stat-card:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .stats__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .stat-card {
+    padding: 36px 16px;
+  }
+  .stat-card__number {
+    font-size: 2.5rem;
+  }
+}
