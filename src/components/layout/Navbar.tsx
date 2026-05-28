@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { ArrowRight } from '../icons'
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -13,11 +14,26 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const handleHashClick = (e: React.MouseEvent<HTMLAnchorElement>, to: string) => {
+    e.preventDefault()
+    setMenuOpen(false)
+    const hash = to.split('#')[1]
+    
+    if (location.pathname === '/') {
+      const element = document.getElementById(hash)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    } else {
+      navigate('/#' + hash)
+    }
+  }
+
   const navLinks = [
-    { to: '/',             label: 'Inicio' },
-    { to: '/apartamentos', label: 'Catálogo' },
-    { to: '/#proyectos',   label: 'Proyecto Destacado' },
-    { to: '/#contacto',    label: 'Contacto' },
+    { to: '/',                     label: 'Inicio' },
+    { to: '/apartamentos',         label: 'Catálogo' },
+    { to: '/#proyecto-destacado',  label: 'Proyecto Destacado' },
+    { to: '/#contacto',            label: 'Contacto' },
   ]
 
   return (
@@ -44,7 +60,8 @@ const Navbar = () => {
             <li key={link.to}>
               {link.to.startsWith('/#') ? (
                 <a
-                  href={link.to.substring(1)}
+                  href={link.to}
+                  onClick={(e) => handleHashClick(e, link.to)}
                   className="px-4 py-2 text-sm font-medium rounded-lg text-[#454C47] hover:text-[#6E7E65] hover:bg-[#6E7E65]/5 transition-all duration-200"
                 >
                   {link.label}
@@ -97,8 +114,8 @@ const Navbar = () => {
             link.to.startsWith('/#') ? (
               <a
                 key={link.to}
-                href={link.to.substring(1)}
-                onClick={() => setMenuOpen(false)}
+                href={link.to}
+                onClick={(e) => handleHashClick(e, link.to)}
                 className="py-3 px-4 text-sm font-medium text-[#454C47] hover:text-[#6E7E65] border-b border-border/40 transition-colors"
               >
                 {link.label}
