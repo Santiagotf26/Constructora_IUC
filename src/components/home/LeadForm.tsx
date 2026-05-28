@@ -7,10 +7,10 @@ interface FormState {
 }
 
 const trustItems = [
-  { Icon: Lightning, text: 'Respuesta en menos de 2 horas' },
-  { Icon: Lock,      text: 'Tus datos están 100% protegidos' },
-  { Icon: Check,     text: 'Asesoría personalizada sin costo' },
-  { Icon: ArrowRight, text: 'Cotización detallada gratis' },
+  { Icon: Lightning, text: 'Respuesta rápida en menos de 2 horas' },
+  { Icon: Lock,      text: 'Tus datos están 100% protegidos legalmente' },
+  { Icon: Check,     text: 'Asesoría y preaprobación de crédito sin costo' },
+  { Icon: ArrowRight, text: 'Cotización detallada y brochure en PDF gratis' },
 ]
 
 const LeadForm = () => {
@@ -26,177 +26,181 @@ const LeadForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    setTimeout(() => { setLoading(false); setDone(true) }, 1600)
+    setTimeout(() => { setLoading(false); setDone(true) }, 1400)
   }
 
-  const inputCls = 'w-full bg-[#13161E] border border-white/8 rounded-xl px-4 py-3 text-[#F0F2F8] text-sm placeholder-[#4E5468] focus:border-[#E8A617]/50 focus:bg-[#E8A617]/3 transition-all duration-200'
+  const inputCls = 'w-full bg-[#FAF9F6] border border-[#6E7E65]/15 rounded-xl px-4 py-3 text-[#1C201E] text-sm placeholder-[#7C837E] focus:border-[#6E7E65] focus:bg-[#6E7E65]/3 transition-all duration-200 shadow-sm'
   const selectCls = `${inputCls} appearance-none cursor-pointer`
 
   return (
-    <section id="contacto" className="py-28 bg-[#13161E] relative overflow-hidden">
-      <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full bg-[#E8A617]/4 blur-[100px] pointer-events-none"/>
+    <section id="contacto" className="py-24 bg-[#FAF9F6] relative overflow-hidden">
+      {/* Glow */}
+      <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full bg-[#6E7E65]/5 blur-[120px] pointer-events-none"/>
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left */}
-          <div>
-            <div className="pill mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E8A617] block"/>
-              Solicita Información
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          {/* LEFT: Trust and Copy Column (5 Cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="pill mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#6E7E65] block"/>
+              Asesoría Sin Compromiso
             </div>
-            <h2 className="font-display font-black text-4xl lg:text-5xl text-[#F0F2F8] leading-tight mb-6">
-              Hablemos de tu<br/>
-              <span className="text-gold">próximo hogar</span>
+            <h2 className="font-display font-black text-3xl lg:text-5xl text-[#1C201E] leading-tight">
+              ¿HABLEMOS DE TU<br />
+              <span className="text-gold uppercase">PRÓXIMO HOGAR?</span>
             </h2>
-            <p className="text-[#8A90A4] leading-relaxed mb-10 text-sm">
-              Nuestros asesores te acompañarán en cada paso.
-              Cuéntanos qué buscas y te presentamos las mejores opciones.
+            <p className="text-[#454C47] text-sm leading-relaxed font-light">
+              Nuestros asesores expertos en Boyacá te guiarán en cada paso del proceso: planes de pago personalizados, plazos de cuota inicial y preaprobación de crédito hipotecario.
             </p>
 
             {/* Trust signals */}
-            <div className="space-y-4">
+            <div className="space-y-4 pt-4">
               {trustItems.map(({ Icon, text }, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-[#E8A617]/10 border border-[#E8A617]/20 flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-4 h-4 text-[#E8A617]" />
+                  <div className="w-9 h-9 rounded-xl bg-[#6E7E65]/8 border border-[#6E7E65]/15 flex items-center justify-center flex-shrink-0">
+                    <Icon className="w-4.5 h-4.5 text-[#6E7E65]" strokeWidth={2} />
                   </div>
-                  <span className="text-[#8A90A4] text-sm">{text}</span>
+                  <span className="text-[#454C47] text-xs font-semibold">{text}</span>
                 </div>
               ))}
             </div>
 
             {/* Social proof */}
-            <div className="mt-10 pt-8 border-t border-white/6 flex items-center gap-4">
+            <div className="pt-6 border-t border-[#6E7E65]/10 flex items-center gap-4">
               <div className="flex -space-x-2">
                 {['CR', 'MV', 'AT', 'JS'].map(initials => (
                   <div
                     key={initials}
-                    className="w-9 h-9 rounded-full bg-gold flex items-center justify-center text-[#0D0F14] font-display font-black text-xs border-2 border-[#13161E]"
+                    className="w-9 h-9 rounded-full bg-[#6E7E65] flex items-center justify-center text-white font-display font-extrabold text-[10px] border-2 border-white"
                   >
                     {initials}
                   </div>
                 ))}
               </div>
               <div>
-                <p className="text-[#F0F2F8] text-sm font-semibold">+500 clientes satisfechos</p>
-                <p className="text-[#4E5468] text-xs">nos eligieron este año</p>
+                <p className="text-[#1C201E] text-xs font-bold">+500 familias boyacenses</p>
+                <p className="text-[#7C837E] text-[10px] font-medium">han confiado en nosotros este año</p>
               </div>
             </div>
           </div>
 
-          {/* Right: form */}
-          <div className="bg-[#1A1E2A] border border-white/7 rounded-3xl p-8 lg:p-10">
-            {done ? (
-              <div className="text-center py-12">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-400/30 flex items-center justify-center mx-auto mb-6">
-                  <Check className="w-8 h-8 text-emerald-400" strokeWidth={2.5} />
-                </div>
-                <h3 className="font-display font-black text-2xl text-[#F0F2F8] mb-3">¡Mensaje enviado!</h3>
-                <p className="text-[#8A90A4] mb-8 text-sm">
-                  Un asesor se comunicará contigo en las próximas 2 horas hábiles.
-                </p>
-                <button
-                  onClick={() => setDone(false)}
-                  className="px-6 py-3 border border-white/12 text-[#8A90A4] rounded-lg text-sm hover:border-[#E8A617]/40 hover:text-[#E8A617] transition-colors cursor-pointer"
-                >
-                  Enviar otro mensaje
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <h3 className="font-display font-bold text-xl text-[#F0F2F8] mb-6">
-                  Solicitar información gratuita
-                </h3>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[10px] font-bold text-[#4E5468] uppercase tracking-widest mb-2">
-                      Nombre *
-                    </label>
-                    <input id="lead-name" name="name" type="text" required value={form.name}
-                      onChange={handleChange} placeholder="Tu nombre" className={inputCls}/>
+          {/* RIGHT: Form Column (7 Cols) */}
+          <div className="lg:col-span-7">
+            <div className="bg-white border border-[#6E7E65]/10 rounded-3xl p-8 lg:p-10 shadow-gold-lg">
+              {done ? (
+                <div className="text-center py-12">
+                  <div className="w-16 h-16 rounded-full bg-[#6E7E65]/10 border border-[#6E7E65]/20 flex items-center justify-center mx-auto mb-6">
+                    <Check className="w-8 h-8 text-[#6E7E65]" strokeWidth={2.5} />
                   </div>
-                  <div>
-                    <label className="block text-[10px] font-bold text-[#4E5468] uppercase tracking-widest mb-2">
-                      Teléfono *
-                    </label>
-                    <input id="lead-phone" name="phone" type="tel" required value={form.phone}
-                      onChange={handleChange} placeholder="+57 314 276 7572" className={inputCls}/>
+                  <h3 className="font-display font-black text-2xl text-[#1C201E] mb-3">¡Solicitud Recibida!</h3>
+                  <p className="text-[#454C47] mb-8 text-sm font-light">
+                    Un asesor especializado en Duitama te enviará la cotización y folletos del proyecto de tu interés a tu WhatsApp en breve.
+                  </p>
+                  <button
+                    onClick={() => setDone(false)}
+                    className="px-6 py-3 border border-[#6E7E65]/20 text-[#6E7E65] rounded-xl text-sm font-bold hover:border-[#6E7E65] hover:bg-[#6E7E65]/5 transition-colors cursor-pointer"
+                  >
+                    Enviar otra consulta
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <h3 className="font-display font-black text-xl text-[#1C201E] mb-6">
+                    Solicitar Cotización y Plan de Pagos
+                  </h3>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[9px] font-bold text-[#7C837E] uppercase tracking-widest mb-1.5">
+                        Nombre Completo *
+                      </label>
+                      <input id="lead-name" name="name" type="text" required value={form.name}
+                        onChange={handleChange} placeholder="Tu nombre" className={inputCls}/>
+                    </div>
+                    <div>
+                      <label className="block text-[9px] font-bold text-[#7C837E] uppercase tracking-widest mb-1.5">
+                        Número de WhatsApp *
+                      </label>
+                      <input id="lead-phone" name="phone" type="tel" required value={form.phone}
+                        onChange={handleChange} placeholder="+57 300 123 4567" className={inputCls}/>
+                    </div>
                   </div>
-                </div>
 
-                <div>
-                  <label className="block text-[10px] font-bold text-[#4E5468] uppercase tracking-widest mb-2">
-                    Email *
-                  </label>
-                  <input id="lead-email" name="email" type="email" required value={form.email}
-                    onChange={handleChange} placeholder="correo@email.com" className={inputCls}/>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-bold text-[#4E5468] uppercase tracking-widest mb-2">
-                      Presupuesto
+                    <label className="block text-[9px] font-bold text-[#7C837E] uppercase tracking-widest mb-1.5">
+                      Correo Electrónico *
                     </label>
-                    <select id="lead-budget" name="budget" value={form.budget}
-                      onChange={handleChange} className={selectCls}>
-                      <option value="">Seleccionar</option>
-                      <option value="200-350">$200M – $350M</option>
-                      <option value="350-600">$350M – $600M</option>
-                      <option value="600-1000">$600M – $1.000M</option>
-                      <option value="1000+">Más de $1.000M</option>
-                    </select>
+                    <input id="lead-email" name="email" type="email" required value={form.email}
+                      onChange={handleChange} placeholder="correo@ejemplo.com" className={inputCls}/>
                   </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[9px] font-bold text-[#7C837E] uppercase tracking-widest mb-1.5">
+                        Presupuesto Estimado
+                      </label>
+                      <select id="lead-budget" name="budget" value={form.budget}
+                        onChange={handleChange} className={selectCls}>
+                        <option value="">Seleccionar presupuesto</option>
+                        <option value="180-220">$180M – $220M COP</option>
+                        <option value="220-300">$220M – $300M COP</option>
+                        <option value="300-400">$300M – $400M COP</option>
+                        <option value="400+">Más de $400M COP</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-[9px] font-bold text-[#7C837E] uppercase tracking-widest mb-1.5">
+                        Proyecto de Interés
+                      </label>
+                      <select id="lead-interest" name="interest" value={form.interest}
+                        onChange={handleChange} className={selectCls}>
+                        <option value="">Seleccionar desarrollo</option>
+                        <option value="floresta-1br">La Floresta (1 Hab)</option>
+                        <option value="floresta-3br">La Floresta (3 Hab)</option>
+                        <option value="floresta-ph">La Floresta (Penthouse)</option>
+                        <option value="mirador">Mirador de la Villa</option>
+                        <option value="altos">Altos del Prado</option>
+                      </select>
+                    </div>
+                  </div>
+
                   <div>
-                    <label className="block text-[10px] font-bold text-[#4E5468] uppercase tracking-widest mb-2">
-                      Habitaciones
+                    <label className="block text-[9px] font-bold text-[#7C837E] uppercase tracking-widest mb-1.5">
+                      Mensaje o Consultas Específicas
                     </label>
-                    <select id="lead-interest" name="interest" value={form.interest}
-                      onChange={handleChange} className={selectCls}>
-                      <option value="">Seleccionar</option>
-                      <option value="studio">Estudio</option>
-                      <option value="1br">1 Habitación</option>
-                      <option value="2br">2 Habitaciones</option>
-                      <option value="3br">3 Habitaciones</option>
-                      <option value="penthouse">Penthouse</option>
-                    </select>
+                    <textarea id="lead-message" name="message" rows={3} value={form.message}
+                      onChange={handleChange} placeholder="¿Deseas saber plazos de cuota inicial, fechas de entrega o acabados?"
+                      className={`${inputCls} resize-none`}/>
                   </div>
-                </div>
 
-                <div>
-                  <label className="block text-[10px] font-bold text-[#4E5468] uppercase tracking-widest mb-2">
-                    Mensaje adicional
-                  </label>
-                  <textarea id="lead-message" name="message" rows={3} value={form.message}
-                    onChange={handleChange} placeholder="¿Alguna preferencia o zona específica?"
-                    className={`${inputCls} resize-none`}/>
-                </div>
+                  <button
+                    id="lead-submit"
+                    type="submit"
+                    disabled={loading}
+                    className="w-full flex items-center justify-center gap-3 py-4 bg-[#D97E60] text-white font-display font-bold text-base rounded-xl transition-all duration-300 hover:bg-[#C86B4D] hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    {loading ? (
+                      <>
+                        <span className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin"/>
+                        Procesando...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        Solicitar Folletos y Precios
+                      </>
+                    )}
+                  </button>
 
-                <button
-                  id="lead-submit"
-                  type="submit"
-                  disabled={loading}
-                  className="w-full flex items-center justify-center gap-3 py-4 bg-gold text-[#0D0F14] font-display font-bold text-base rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-gold disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
-                >
-                  {loading ? (
-                    <>
-                      <span className="w-5 h-5 border-2 border-[#0D0F14]/20 border-t-[#0D0F14] rounded-full animate-spin"/>
-                      Enviando...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4" />
-                      Solicitar Cotización Gratuita
-                    </>
-                  )}
-                </button>
-
-                <p className="text-center text-[#4E5468] text-xs">
-                  Al enviar aceptas nuestra política de privacidad. Sin spam.
-                </p>
-              </form>
-            )}
+                  <p className="text-center text-[#7C837E] text-[10px] font-medium">
+                    Al enviar la información autorizas el tratamiento de tus datos personales conforme a la ley colombiana.
+                  </p>
+                </form>
+              )}
+            </div>
           </div>
+
         </div>
       </div>
     </section>

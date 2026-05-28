@@ -22,7 +22,7 @@ const Catalog = () => {
 
   useEffect(() => {
     setLoading(true)
-    const t = setTimeout(() => setLoading(false), 1200)
+    const t = setTimeout(() => setLoading(false), 800)
     return () => clearTimeout(t)
   }, [filters])
 
@@ -49,67 +49,68 @@ const Catalog = () => {
   const clearFilters = () => setFilters(DEFAULT_FILTERS)
 
   return (
-    <div className="min-h-screen bg-[#0D0F14] pt-20">
+    <div className="min-h-screen bg-[#FAF9F6] pt-20">
       {/* Page header */}
-      <div className="bg-[#13161E] border-b border-white/5">
+      <div className="bg-white border-b border-[#6E7E65]/10">
         <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="pill mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E8A617] block"/>
-            Catálogo Completo
+            <span className="w-1.5 h-1.5 rounded-full bg-[#6E7E65] block"/>
+            Catálogo de Unidades
           </div>
-          <h1 className="font-display font-black text-4xl lg:text-5xl text-[#F0F2F8] mb-3">
+          <h1 className="font-display font-black text-4xl text-[#1C201E] mb-3">
             Apartamentos <span className="text-gold">Disponibles</span>
           </h1>
-          <p className="text-[#8A90A4] max-w-xl text-sm">
-            Encuentra el apartamento perfecto entre nuestra selección de unidades en los mejores sectores de Bogotá.
+          <p className="text-[#454C47] max-w-xl text-sm font-light">
+            Explora las diferentes tipologías en venta y preventa en las zonas residenciales de mayor exclusividad de Duitama, Boyacá.
           </p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-10">
-        <div className="flex gap-8">
+        <div className="flex flex-col lg:flex-row gap-8">
+          
           {/* Sidebar — desktop */}
           <div className="hidden lg:block w-72 flex-shrink-0">
             <FilterBar filters={filters} onChange={setFilters} onClear={clearFilters} totalResults={filtered.length}/>
           </div>
 
-          {/* Main */}
+          {/* Main Content Area */}
           <div className="flex-1 min-w-0">
             {/* Toolbar */}
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+            <div className="flex items-center justify-between gap-4 mb-6 p-4 bg-white border border-[#6E7E65]/8 rounded-2xl shadow-sm">
               <div className="flex items-center gap-3">
                 {/* Mobile filter btn */}
                 <button
                   onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
-                  className="lg:hidden flex items-center gap-2 px-4 py-2.5 bg-[#1A1E2A] border border-white/8 text-[#F0F2F8] text-sm font-semibold rounded-xl hover:border-[#E8A617]/30 transition-colors cursor-pointer"
+                  className="lg:hidden flex items-center gap-2 px-4 py-2 bg-[#FAF9F6] border border-[#6E7E65]/15 text-[#1C201E] text-xs font-bold rounded-xl hover:border-[#6E7E65] transition-colors cursor-pointer"
                 >
-                  <Filter className="w-4 h-4" />
+                  <Filter className="w-4 h-4 text-[#6E7E65]" />
                   Filtros
                 </button>
-                <p className="text-[#8A90A4] text-sm">
-                  <span className="font-bold text-[#F0F2F8]">{loading ? '—' : filtered.length}</span> apartamentos
+                <p className="text-[#454C47] text-xs font-semibold">
+                  Resultados: <span className="text-[#6E7E65] font-black">{loading ? '—' : filtered.length}</span> unidades
                 </p>
               </div>
 
-              {/* Sort */}
+              {/* Sort selector */}
               <div className="flex items-center gap-2">
-                <span className="text-[#4E5468] text-xs">Ordenar:</span>
+                <span className="text-[#7C837E] text-[10px] uppercase font-bold tracking-wider">Ordenar:</span>
                 <select
                   id="catalog-sort"
                   value={sort}
                   onChange={e => setSort(e.target.value as SortKey)}
-                  className="bg-[#1A1E2A] border border-white/8 text-[#F0F2F8] text-sm rounded-xl px-3 py-2 cursor-pointer appearance-none focus:border-[#E8A617]/40 transition-colors"
+                  className="bg-[#FAF9F6] border border-[#6E7E65]/15 text-[#1C201E] text-xs font-bold rounded-xl px-3 py-2 cursor-pointer focus:border-[#6E7E65] transition-colors"
                 >
                   <option value="default">Relevancia</option>
-                  <option value="price-asc">Precio ↑</option>
-                  <option value="price-desc">Precio ↓</option>
-                  <option value="area-asc">Área ↑</option>
-                  <option value="area-desc">Área ↓</option>
+                  <option value="price-asc">Precio menor a mayor</option>
+                  <option value="price-desc">Precio mayor a menor</option>
+                  <option value="area-asc">Área menor a mayor</option>
+                  <option value="area-desc">Área mayor a menor</option>
                 </select>
               </div>
             </div>
 
-            {/* Mobile filters */}
+            {/* Mobile filters panel */}
             {mobileFiltersOpen && (
               <div className="lg:hidden mb-6">
                 <FilterBar filters={filters} onChange={setFilters} onClear={clearFilters} totalResults={filtered.length}/>
@@ -122,19 +123,19 @@ const Catalog = () => {
                 {Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i}/>)}
               </div>
             ) : filtered.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-24 text-center">
-                <div className="w-20 h-20 rounded-2xl bg-[#E8A617]/8 border border-[#E8A617]/15 flex items-center justify-center mx-auto mb-5">
-                  <Filter className="w-10 h-10 text-[#E8A617]" />
+              <div className="flex flex-col items-center justify-center py-20 text-center bg-white border border-[#6E7E65]/8 rounded-3xl p-8">
+                <div className="w-16 h-16 rounded-2xl bg-[#6E7E65]/8 border border-[#6E7E65]/12 flex items-center justify-center mx-auto mb-5 text-[#6E7E65]">
+                  <Filter className="w-8 h-8" />
                 </div>
-                <h3 className="font-display font-bold text-xl text-[#F0F2F8] mb-3">Sin resultados</h3>
-                <p className="text-[#8A90A4] mb-6 max-w-sm text-sm">
-                  No encontramos apartamentos con esos filtros. Intenta ampliar tu búsqueda.
+                <h3 className="font-display font-extrabold text-xl text-[#1C201E] mb-2">Sin Resultados</h3>
+                <p className="text-[#7C837E] mb-6 max-w-sm text-xs font-light">
+                  No hemos encontrado apartamentos con los filtros seleccionados. Intenta modificarlos.
                 </p>
                 <button
                   onClick={clearFilters}
-                  className="flex items-center gap-2 px-6 py-3 bg-gold text-[#0D0F14] font-bold rounded-xl text-sm hover:-translate-y-0.5 transition-transform cursor-pointer"
+                  className="flex items-center gap-2 px-6 py-3 bg-[#6E7E65] text-white font-bold rounded-xl text-xs hover:bg-[#5D6B54] transition-colors cursor-pointer"
                 >
-                  Limpiar filtros
+                  Limpiar todos los filtros
                   <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
                 </button>
               </div>
@@ -144,6 +145,7 @@ const Catalog = () => {
               </div>
             )}
           </div>
+
         </div>
       </div>
     </div>

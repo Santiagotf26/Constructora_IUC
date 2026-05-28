@@ -1,101 +1,124 @@
-import {
-  Certificate, Ruler, CreditCard, Clock,
-  Leaf, Users, ArrowRight
-} from '../icons'
+import { TrendUp, MapPin, Ruler, CreditCard, Tree, ArrowRight } from '../icons'
 
-const features = [
+const benefits = [
   {
-    Icon: Certificate,
-    title: 'Construcción Certificada',
-    desc: 'Cumplimos las normas NSR-10 y contamos con certificación ISO 9001 en todos nuestros procesos constructivos.',
+    Icon: TrendUp,
+    title: 'Alta Valorización',
+    desc: 'Duitama se consolida como el principal eje comercial e industrial de Boyacá. Invertir en La Floresta garantiza un retorno sólido respaldado por la constante valorización del sector residencial premium.',
+    highlight: true,
+  },
+  {
+    Icon: MapPin,
+    title: 'Ubicación Estratégica',
+    desc: 'Situado en la prestigiosa zona de La Floresta. Conectividad directa con las avenidas principales (Avenida de las Américas), centros comerciales (CC Innovo Plaza) y las rutas turísticas clave de Boyacá.',
     highlight: false,
   },
   {
     Icon: Ruler,
-    title: 'Diseño Arquitectónico Premium',
-    desc: 'Cada proyecto es diseñado por arquitectos de renombre con materiales de importación de primera calidad.',
-    highlight: true,
+    title: 'Diseño Moderno & Bioclimático',
+    desc: 'Arquitectura premium inteligente que maximiza la captura de luz solar y ofrece un excelente confort térmico natural, ideal para el clima de Duitama. Acabados elegantes e importados.',
+    highlight: false,
   },
   {
     Icon: CreditCard,
-    title: 'Financiación Flexible',
-    desc: 'Alianzas con los principales bancos del país para facilitar tu crédito hipotecario con las mejores tasas.',
+    title: 'Financiamiento Flexible',
+    desc: 'Múltiples opciones y alianzas activas con las entidades financieras líderes de Colombia para agilizar tu preaprobación y facilitarte las mejores tasas del mercado hipotecario.',
     highlight: false,
   },
   {
-    Icon: Clock,
-    title: 'Entrega Garantizada',
-    desc: 'Comprometidos con los plazos de entrega. Tu inversión protegida con garantías respaldadas por ley.',
-    highlight: false,
-  },
-  {
-    Icon: Leaf,
-    title: 'Construcción Sostenible',
-    desc: 'Proyectos con certificación LEED que reducen el consumo energético y huella de carbono.',
+    Icon: Tree,
+    title: 'Calidad de Vida Superior',
+    desc: 'Combina aire puro, seguridad reforzada 24/7 y extraordinarias zonas comunes (rooftop campestre con fogatas y sendero verde) diseñadas para el bienestar físico y mental de tu familia.',
     highlight: true,
-  },
-  {
-    Icon: Users,
-    title: 'Asesoría Personalizada',
-    desc: 'Un asesor dedicado te acompaña en todo el proceso desde la selección hasta la escrituración.',
-    highlight: false,
   },
 ]
 
-const WhyUs = () => (
-  <section className="py-28 bg-[#0D0F14] relative overflow-hidden">
-    {/* Ambient glow */}
-    <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-[#E8A617]/4 blur-[120px] pointer-events-none"/>
+const WhyUs = () => {
+  return (
+    <section id="beneficios" className="py-24 bg-bg-base relative overflow-hidden">
+      {/* Decorative Glow */}
+      <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-[#6E7E65]/5 blur-[120px] pointer-events-none"/>
 
-    <div className="max-w-7xl mx-auto px-6">
-      {/* Header */}
-      <div className="text-center mb-16">
-        <div className="pill mb-6" style={{ margin: '0 auto 1.5rem' }}>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#E8A617] block"/>
-          ¿Por qué IUC&CO?
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-16 max-w-2xl mx-auto">
+          <div className="pill mb-4" style={{ margin: '0 auto' }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#6E7E65] block"/>
+            Valorización Inmobiliaria
+          </div>
+          <h2 className="font-display font-black text-[#1C201E] tracking-tight mt-4 leading-tight">
+            <span className="block text-3xl lg:text-5xl font-light">¿Por qué invertir en</span>
+            <span className="block text-4xl lg:text-6xl text-gold font-extrabold mt-1">DUITAMA BOYACÁ?</span>
+          </h2>
+          <p className="text-[#454C47] text-sm mt-4 leading-relaxed font-light">
+            Inversión inteligente en un entorno seguro y próspero, diseñado para ofrecer el máximo confort y rentabilidad a mediano y largo plazo.
+          </p>
         </div>
-        <h2 className="font-display font-black text-[#F0F2F8] leading-tight mb-6">
-          <span className="block text-4xl lg:text-6xl">UNA PLATAFORMA</span>
-          <span className="block text-4xl lg:text-6xl text-gold">INMOBILIARIA</span>
-          <span className="block text-2xl lg:text-4xl font-light text-[#8A90A4]">moderna y de confianza</span>
-        </h2>
-        <p className="text-[#4E5468] max-w-lg mx-auto text-sm leading-relaxed">
-          Herramientas digitales avanzadas combinadas con la experiencia local de más de 20 años.
-        </p>
-      </div>
 
-      {/* Features grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-        {features.map(({ Icon, title, desc, highlight }, i) => (
-          <div
-            key={i}
-            className={`group flex items-start gap-5 p-6 rounded-2xl border transition-all duration-300 cursor-default ${
-              highlight
-                ? 'bg-[#E8A617]/5 border-[#E8A617]/15 hover:bg-[#E8A617]/10 hover:border-[#E8A617]/35'
-                : 'bg-[#1A1E2A] border-white/6 hover:border-white/12'
-            }`}
-          >
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
-              highlight
-                ? 'bg-[#E8A617]/15 group-hover:bg-[#E8A617]/25'
-                : 'bg-[#E8A617]/8 group-hover:bg-[#E8A617]/15'
-            }`}>
-              <Icon className="w-5 h-5 text-[#E8A617]" />
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-display font-bold text-[#F0F2F8] text-sm group-hover:text-[#E8A617] transition-colors duration-300">
+        {/* Grid Layout - 5 cards layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+          {benefits.slice(0, 3).map(({ Icon, title, desc, highlight }, i) => (
+            <div
+              key={i}
+              className={`group relative flex flex-col justify-between p-8 rounded-3xl border transition-all duration-300 ${
+                highlight
+                  ? 'bg-white border-[#6E7E65]/20 shadow-gold hover:-translate-y-1 hover:border-[#6E7E65]/40'
+                  : 'bg-white/60 border-[#6E7E65]/8 hover:-translate-y-1 hover:border-[#6E7E65]/20 hover:bg-white'
+              }`}
+            >
+              <div>
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
+                  highlight
+                    ? 'bg-[#D97E60]/10 text-[#D97E60]'
+                    : 'bg-[#6E7E65]/10 text-[#6E7E65]'
+                }`}>
+                  <Icon className="w-6 h-6" strokeWidth={2} />
+                </div>
+                <h3 className="font-display font-extrabold text-[#1C201E] text-lg mb-3 group-hover:text-[#6E7E65] transition-colors duration-300">
                   {title}
                 </h3>
-                <ArrowRight className="w-4 h-4 text-[#E8A617] opacity-0 group-hover:opacity-100 transition-all duration-300 flex-shrink-0" />
+                <p className="text-[#454C47] text-sm leading-relaxed font-light">{desc}</p>
               </div>
-              <p className="text-[#8A90A4] text-sm leading-relaxed">{desc}</p>
+              <div className="mt-6 pt-4 border-t border-[#6E7E65]/5 flex justify-end">
+                <ArrowRight className="w-5 h-5 text-[#6E7E65] opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0" strokeWidth={2} />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+
+          {/* Bottom row (two cards centering nicely in grid if 3 columns) */}
+          {benefits.slice(3, 5).map(({ Icon, title, desc, highlight }, i) => (
+            <div
+              key={i + 3}
+              className={`group relative flex flex-col justify-between p-8 rounded-3xl border transition-all duration-300 lg:col-span-1 md:col-span-1 ${
+                i === 1 ? 'lg:col-span-1 md:col-span-2' : ''
+              } ${
+                highlight
+                  ? 'bg-white border-[#6E7E65]/20 shadow-gold hover:-translate-y-1 hover:border-[#6E7E65]/40'
+                  : 'bg-white/60 border-[#6E7E65]/8 hover:-translate-y-1 hover:border-[#6E7E65]/20 hover:bg-white'
+              }`}
+            >
+              <div>
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
+                  highlight
+                    ? 'bg-[#D97E60]/10 text-[#D97E60]'
+                    : 'bg-[#6E7E65]/10 text-[#6E7E65]'
+                }`}>
+                  <Icon className="w-6 h-6" strokeWidth={2} />
+                </div>
+                <h3 className="font-display font-extrabold text-[#1C201E] text-lg mb-3 group-hover:text-[#6E7E65] transition-colors duration-300">
+                  {title}
+                </h3>
+                <p className="text-[#454C47] text-sm leading-relaxed font-light">{desc}</p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-[#6E7E65]/5 flex justify-end">
+                <ArrowRight className="w-5 h-5 text-[#6E7E65] opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0" strokeWidth={2} />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-)
+    </section>
+  )
+}
 
 export default WhyUs

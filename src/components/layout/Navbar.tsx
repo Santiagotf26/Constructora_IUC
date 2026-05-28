@@ -15,16 +15,16 @@ const Navbar = () => {
 
   const navLinks = [
     { to: '/',             label: 'Inicio' },
-    { to: '/apartamentos', label: 'Apartamentos' },
-    { to: '/#proyectos',   label: 'Proyectos' },
+    { to: '/apartamentos', label: 'Catálogo' },
+    { to: '/#proyectos',   label: 'Proyecto Destacado' },
     { to: '/#contacto',    label: 'Contacto' },
   ]
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'glass-dark border-b border-white/6 py-2 shadow-[0_4px_24px_rgba(0,0,0,0.5)]'
+          ? 'glass border-b border-border-subtle py-2 shadow-gold'
           : 'bg-transparent py-4'
       }`}
     >
@@ -34,26 +34,35 @@ const Navbar = () => {
           <img
             src="/logo.png"
             alt="IUC&CO"
-            className={`${scrolled ? 'h-14' : 'h-16'} w-auto object-contain transition-all duration-300 group-hover:brightness-110 drop-shadow-[0_0_8px_rgba(232,166,23,0.4)]`}
+            className={`${scrolled ? 'h-11' : 'h-14'} w-auto object-contain transition-all duration-300 group-hover:brightness-105`}
           />
         </Link>
 
         {/* ── Desktop links ──────────────────────── */}
-        <ul className="hidden lg:flex items-center">
+        <ul className="hidden lg:flex items-center gap-1">
           {navLinks.map(link => (
             <li key={link.to}>
-              <NavLink
-                to={link.to}
-                className={({ isActive }) =>
-                  `relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-                    isActive && !link.to.includes('#')
-                      ? 'text-[#E8A617]'
-                      : 'text-white/55 hover:text-white hover:bg-white/4'
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
+              {link.to.startsWith('/#') ? (
+                <a
+                  href={link.to.substring(1)}
+                  className="px-4 py-2 text-sm font-medium rounded-lg text-[#454C47] hover:text-[#6E7E65] hover:bg-[#6E7E65]/5 transition-all duration-200"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <NavLink
+                  to={link.to}
+                  className={({ isActive }) =>
+                    `relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                      isActive
+                        ? 'text-[#6E7E65] font-semibold bg-[#6E7E65]/6'
+                        : 'text-[#454C47] hover:text-[#6E7E65] hover:bg-[#6E7E65]/5'
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              )}
             </li>
           ))}
         </ul>
@@ -61,44 +70,55 @@ const Navbar = () => {
         {/* ── CTA ───────────────────────────────── */}
         <button
           onClick={() => navigate('/apartamentos')}
-          className="hidden lg:flex items-center gap-2 px-5 py-2.5 bg-gold text-[#0D0F14] font-display font-bold text-sm rounded-lg transition-all duration-200 hover:-translate-y-px hover:shadow-gold cursor-pointer"
+          className="hidden lg:flex items-center gap-2 px-5 py-2.5 bg-[#6E7E65] text-white font-display font-semibold text-sm rounded-xl transition-all duration-200 hover:bg-[#5E6D56] hover:-translate-y-px hover:shadow-lg cursor-pointer"
         >
-          Ver Apartamentos
-          <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+          Explorar Unidades
+          <ArrowRight className="w-4 h-4" strokeWidth={2.2} />
         </button>
 
         {/* ── Hamburger ─────────────────────────── */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="lg:hidden p-2 rounded-lg hover:bg-white/5 transition-colors"
+          className="lg:hidden p-2 rounded-lg hover:bg-[#6E7E65]/5 transition-colors"
           aria-label="Menú"
         >
           <div className="w-6 flex flex-col gap-1.5">
-            <span className={`block h-px bg-white rounded-full transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`}/>
-            <span className={`block h-px bg-white rounded-full transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`}/>
-            <span className={`block h-px bg-white rounded-full transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`}/>
+            <span className={`block h-0.5 bg-[#1C201E] rounded-full transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`}/>
+            <span className={`block h-0.5 bg-[#1C201E] rounded-full transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`}/>
+            <span className={`block h-0.5 bg-[#1C201E] rounded-full transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`}/>
           </div>
         </button>
       </div>
 
       {/* ── Mobile menu ──────────────────────────── */}
-      <div className={`lg:hidden overflow-hidden transition-all duration-300 ${menuOpen ? 'max-h-64' : 'max-h-0'}`}>
-        <div className="px-6 pb-5 pt-3 flex flex-col gap-1 glass-dark border-t border-white/5">
+      <div className={`lg:hidden overflow-hidden transition-all duration-300 ${menuOpen ? 'max-h-64 border-b border-border-subtle shadow-gold' : 'max-h-0'}`}>
+        <div className="px-6 pb-5 pt-3 flex flex-col gap-1 bg-[#FFFFFF]/95 backdrop-blur-xl">
           {navLinks.map(link => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              onClick={() => setMenuOpen(false)}
-              className="py-3 px-4 text-sm font-medium text-white/60 hover:text-[#E8A617] border-b border-white/5 transition-colors"
-            >
-              {link.label}
-            </NavLink>
+            link.to.startsWith('/#') ? (
+              <a
+                key={link.to}
+                href={link.to.substring(1)}
+                onClick={() => setMenuOpen(false)}
+                className="py-3 px-4 text-sm font-medium text-[#454C47] hover:text-[#6E7E65] border-b border-border/40 transition-colors"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                onClick={() => setMenuOpen(false)}
+                className="py-3 px-4 text-sm font-medium text-[#454C47] hover:text-[#6E7E65] border-b border-border/40 transition-colors"
+              >
+                {link.label}
+              </NavLink>
+            )
           ))}
           <button
             onClick={() => { navigate('/apartamentos'); setMenuOpen(false) }}
-            className="mt-3 px-5 py-3 bg-gold text-[#0D0F14] font-display font-bold text-sm rounded-lg cursor-pointer"
+            className="mt-3 px-5 py-3 bg-[#6E7E65] text-white font-display font-semibold text-sm rounded-xl hover:bg-[#5E6D56] cursor-pointer"
           >
-            Ver Apartamentos
+            Explorar Unidades
           </button>
         </div>
       </div>
