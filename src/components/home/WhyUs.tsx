@@ -55,43 +55,12 @@ const WhyUs = () => {
           </p>
         </div>
 
-        {/* Grid Layout - 5 cards layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-          {benefits.slice(0, 3).map(({ Icon, title, desc, highlight }, i) => (
+        {/* Optimized Flexible Layout - 5 cards centering nicely */}
+        <div className="flex flex-wrap gap-6 justify-center items-stretch">
+          {benefits.map(({ Icon, title, desc, highlight }, i) => (
             <div
               key={i}
-              className={`group relative flex flex-col justify-between p-8 rounded-3xl border transition-all duration-300 ${
-                highlight
-                  ? 'bg-white border-[#6E7E65]/20 shadow-gold hover:-translate-y-1 hover:border-[#6E7E65]/40'
-                  : 'bg-white/60 border-[#6E7E65]/8 hover:-translate-y-1 hover:border-[#6E7E65]/20 hover:bg-white'
-              }`}
-            >
-              <div>
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
-                  highlight
-                    ? 'bg-[#D97E60]/10 text-[#D97E60]'
-                    : 'bg-[#6E7E65]/10 text-[#6E7E65]'
-                }`}>
-                  <Icon className="w-6 h-6" strokeWidth={2} />
-                </div>
-                <h3 className="font-display font-extrabold text-[#1C201E] text-lg mb-3 group-hover:text-[#6E7E65] transition-colors duration-300">
-                  {title}
-                </h3>
-                <p className="text-[#454C47] text-sm leading-relaxed font-light">{desc}</p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-[#6E7E65]/5 flex justify-end">
-                <ArrowRight className="w-5 h-5 text-[#6E7E65] opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0" strokeWidth={2} />
-              </div>
-            </div>
-          ))}
-
-          {/* Bottom row (two cards centering nicely in grid if 3 columns) */}
-          {benefits.slice(3, 5).map(({ Icon, title, desc, highlight }, i) => (
-            <div
-              key={i + 3}
-              className={`group relative flex flex-col justify-between p-8 rounded-3xl border transition-all duration-300 lg:col-span-1 md:col-span-1 ${
-                i === 1 ? 'lg:col-span-1 md:col-span-2' : ''
-              } ${
+              className={`group relative flex flex-col justify-between p-8 rounded-3xl border transition-all duration-300 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] ${
                 highlight
                   ? 'bg-white border-[#6E7E65]/20 shadow-gold hover:-translate-y-1 hover:border-[#6E7E65]/40'
                   : 'bg-white/60 border-[#6E7E65]/8 hover:-translate-y-1 hover:border-[#6E7E65]/20 hover:bg-white'
