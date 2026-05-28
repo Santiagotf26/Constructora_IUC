@@ -83,6 +83,7 @@ const FeaturedProjectDetail = () => {
               <img
                 src={activeUnit.images[activeImageIdx]}
                 alt={activeUnit.title}
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-102"
               />
               
@@ -112,7 +113,7 @@ const FeaturedProjectDetail = () => {
                       : 'border-[#6E7E65]/10 opacity-75 hover:opacity-100'
                   }`}
                 >
-                  <img src={img} alt="" className="w-full h-full object-cover" />
+                  <img src={img} alt="" loading="lazy" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>

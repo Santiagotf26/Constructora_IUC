@@ -15,6 +15,8 @@ const Hero = () => {
         <img
           src="/apt_hero_bg.png"
           alt="La Floresta Club Residencial"
+          loading="eager"
+          fetchPriority="high"
           className="w-full h-full object-cover object-center transition-transform duration-10000 ease-out scale-100 hover:scale-105"
           style={{ filter: 'brightness(1.05) contrast(0.95) saturate(1.05)' }}
         />

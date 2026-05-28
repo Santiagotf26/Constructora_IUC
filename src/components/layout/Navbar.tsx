@@ -108,8 +108,8 @@ const Navbar = () => {
       </div>
 
       {/* ── Mobile menu ──────────────────────────── */}
-      <div className={`lg:hidden overflow-hidden transition-all duration-300 ${menuOpen ? 'max-h-64 border-b border-border-subtle shadow-gold' : 'max-h-0'}`}>
-        <div className="px-6 pb-5 pt-3 flex flex-col gap-1 bg-[#FFFFFF]/95 backdrop-blur-xl">
+      <div className={`lg:hidden overflow-hidden transition-all duration-300 ${menuOpen ? 'max-h-[350px] opacity-100 border-b border-border-subtle shadow-gold' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+        <div className="px-6 pb-5 pt-3 flex flex-col gap-1 bg-[#FFFFFF] shadow-sm">
           {navLinks.map(link => (
             link.to.startsWith('/#') ? (
               <a
